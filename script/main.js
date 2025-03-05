@@ -27,13 +27,19 @@ function allowDragOver(event) {
 
 function allowDrop(event) {
     event.preventDefault();
-     // gets the dragged elements Id FROM THE DATA transfer object (using'draggedEl') //
-    let droppedElId = event.dataTransfer.getData('draggedEl');
-    // get the actual dragged element using the id //
-    let droppedEl = document.querySelector(`#${droppedElId}`);
-    // append the dragged element to the drop zone //
-    this.appendChild(droppedEl);
+    console.log('Attempting to drop');
+    console.log('Drop zone children:', this.children.length);
 
+ 
+    if (this.children.length === 0 || !this.querySelector('img')) {
+
+        let droppedElId = event.dataTransfer.getData('draggedEl');
+        let droppedEl = document.querySelector(`#${droppedElId}`);
+        this.appendChild(droppedEl);
+
+    } else {
+        console.log('Drop zone is occupied');
+    }
 }
 
 
