@@ -11,12 +11,22 @@ let theThumbnails = document.querySelectorAll('#buttonHolder img'),
 
 function changeImageSet() {
     gameBoard.style.backgroundImage = `url(images/backGround${this.dataset.bgref}.jpg)`;
+    
+    dropZones.forEach(zone => {
+        while (zone.firstChild) {
+            zone.removeChild(zone.firstChild);
+        }
+    });
+
+    puzzlePieces = document.querySelector('.puzzle-pieces');
+    pzlPieces.forEach(piece => {
+        puzzlePieces.appendChild(piece);
+    });
 }
 
 function allowDrag(event) {
     console.log('started dragging an image');
-// adds the ID of the element being dragged to the data transfer object //
-// as 'draggedEl', so we can get it later //
+
     event.dataTransfer.setData('draggedEl', this.id);
 }
 
